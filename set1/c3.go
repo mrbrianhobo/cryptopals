@@ -9,24 +9,20 @@ import (
 	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
-const (
-	alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM"
-)
-
-func DecryptSingleByteXORCipher(src string) byte {
-	decodedHex, err := hex.DecodeString(src)
+func DecryptSingleByteXORCipher(ciphertext string) byte {
+	decodedHex, err := hex.DecodeString(ciphertext)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	m := utils.NewMonogramStats()
 	max, char := -math.MaxFloat64, byte(0)
-	for _, c := range alphabet {
-		current := string(singleByteXOR(decodedHex, byte(c)))
+	for i := 0; i < 256; i++ {
+		current := string(singleByteXOR(decodedHex, byte(i)))
 		currentLogScore := m.Score(current)
 		if currentLogScore > max {
 			max = currentLogScore
-			char = byte(c)
+			char = byte(i)
 		}
 	}
 
@@ -41,8 +37,8 @@ func singleByteXOR(src []byte, char byte) []byte {
 	return out
 }
 
-func DecryptXORCipherWithKey(src string, key byte) string {
-	decodedHex, err := hex.DecodeString(src)
+func DecryptXORCipherWithKey(ciphertext string, key byte) string {
+	decodedHex, err := hex.DecodeString(ciphertext)
 	if err != nil {
 		log.Fatal(err)
 	}

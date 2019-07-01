@@ -53,8 +53,10 @@ func (m *MonogramStats) Score(text string) float64 {
 	for i := range upper {
 		if logScore, ok := m.logScores[upper[i]]; ok {
 			score += logScore
+		} else if upper[i] == ' ' {
+			score += 0
 		} else {
-			score += math.Log10(0.01 / float64(m.total))
+			score += math.Log10(math.SmallestNonzeroFloat64)
 		}
 	}
 	return score

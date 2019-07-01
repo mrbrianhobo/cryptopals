@@ -15,8 +15,8 @@ func TestSingleByteXORCipher(t *testing.T) {
 		expected = "Cooking MC's like a pound of bacon"
 	)
 
-	actualKey := decryptSingleByteXORCipher(src)
-	decrypted := decryptXORCipherWithKey(src, actualKey)
+	actualKey := DecryptSingleByteXORCipher(src)
+	decrypted := DecryptXORCipherWithKey(src, actualKey)
 
 	gomega.Expect(actualKey).To(Equal(key))
 	gomega.Expect(decrypted).To(Equal(expected))

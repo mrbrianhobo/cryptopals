@@ -15,7 +15,7 @@ func TestFixedXOR(t *testing.T) {
 		expected = "746865206b696420646f6e277420706c6179"
 	)
 
-	actual := fixedXOR(src1, src2)
+	actual := FixedXOR(src1, src2)
 
 	gomega.Expect(actual).To(Equal(expected))
 }

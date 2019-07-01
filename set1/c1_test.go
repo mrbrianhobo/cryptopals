@@ -14,7 +14,7 @@ func TestCovertHexToBase64(t *testing.T) {
 		expected = "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"
 	)
 
-	actual := convertHexToBase64(src)
+	actual := ConvertHexToBase64(src)
 
 	gomega.Expect(actual).To(Equal(expected))
 }

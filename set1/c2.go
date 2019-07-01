@@ -6,7 +6,7 @@ import (
 	"encoding/hex"
 )
 
-func fixedXOR(src1 string, src2 string) string {
+func FixedXOR(src1 string, src2 string) string {
 	if len(src1) != len(src2) {
 		log.Fatal("buffers are not equal length")
 	}

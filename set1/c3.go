@@ -13,13 +13,13 @@ const (
 	alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM"
 )
 
-func decryptSingleByteXORCipher(src string) byte {
+func DecryptSingleByteXORCipher(src string) byte {
 	decodedHex, err := hex.DecodeString(src)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	m := utils.NewMonogram()
+	m := utils.NewMonogramStats()
 	max, char := -math.MaxFloat64, byte(0)
 	for _, c := range alphabet {
 		current := string(singleByteXOR(decodedHex, byte(c)))
@@ -41,7 +41,7 @@ func singleByteXOR(src []byte, char byte) []byte {
 	return out
 }
 
-func decryptXORCipherWithKey(src string, key byte) string {
+func DecryptXORCipherWithKey(src string, key byte) string {
 	decodedHex, err := hex.DecodeString(src)
 	if err != nil {
 		log.Fatal(err)

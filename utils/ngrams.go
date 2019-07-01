@@ -9,12 +9,12 @@ import (
 	"strings"
 )
 
-type Monograms struct {
+type MonogramStats struct {
 	logScores map[byte]float64
 	total     int
 }
 
-func NewMonogram() *Monograms {
+func NewMonogramStats() *MonogramStats {
 	file, err := os.Open("../data/english_monograms.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -41,13 +41,13 @@ func NewMonogram() *Monograms {
 		logScores[char] = math.Log10(float64(count) / float64(total))
 	}
 
-	return &Monograms{
+	return &MonogramStats{
 		logScores: logScores,
 		total:     total,
 	}
 }
 
-func (m *Monograms) Score(text string) float64 {
+func (m *MonogramStats) Score(text string) float64 {
 	upper := strings.ToUpper(text)
 	score := 0.0
 	for i := range upper {

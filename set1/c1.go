@@ -7,7 +7,7 @@ import (
 	"encoding/hex"
 )
 
-func convertHexToBase64(src string) string {
+func ConvertHexToBase64(src string) string {
 	decodedHex, err := hex.DecodeString(src)
 	if err != nil {
 		log.Fatal(err)

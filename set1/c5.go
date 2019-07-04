@@ -1,7 +1,7 @@
 package set1
 
 import (
-	"encoding/hex"
+	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
 func RepeatingKeyXOR(plaintext string, key string) string {
@@ -11,5 +11,5 @@ func RepeatingKeyXOR(plaintext string, key string) string {
 		out[i] = byte(char) ^ byte(key[i%len(key)])
 	}
 
-	return hex.EncodeToString(out)
+	return utils.BytesToHex(out)
 }

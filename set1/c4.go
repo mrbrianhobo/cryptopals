@@ -17,19 +17,20 @@ func DetectSingleByteXOR(filename string) string {
 	defer file.Close()
 
 	m := utils.NewMonogramStats()
-	max, ciphertext := -math.MaxFloat64, ""
+	max, hexString := -math.MaxFloat64, ""
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
-		key := DecryptSingleByteXORCipher(line)
-		decrypted := DecryptXORCipherWithKey(line, key)
+		ciphertext := utils.HexToBytes(line)
+		key := DecryptSingleByteXORCipher(ciphertext)
+		decrypted := DecryptXORCipherWithKey(ciphertext, key)
 		currentLogScore := m.Score(decrypted)
 		if currentLogScore > max {
 			max = currentLogScore
-			ciphertext = line
+			hexString = line
 		}
 	}
 
-	return ciphertext
+	return hexString
 }

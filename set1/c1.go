@@ -1,18 +1,10 @@
 package set1
 
 import (
-	"log"
-
-	"encoding/base64"
-	"encoding/hex"
+	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
-func ConvertHexToBase64(src string) string {
-	decodedHex, err := hex.DecodeString(src)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	base64String := base64.StdEncoding.EncodeToString(decodedHex)
-	return base64String
+func ConvertHexToBase64(hexString string) string {
+	src := utils.HexToBytes(hexString)
+	return utils.BytesToBase64(src)
 }

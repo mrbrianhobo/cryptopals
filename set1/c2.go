@@ -3,29 +3,22 @@ package set1
 import (
 	"log"
 
-	"encoding/hex"
+	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
-func FixedXOR(src1 string, src2 string) string {
+func FixedXOR(hexString1 string, hexString2 string) string {
+	src1 := utils.HexToBytes(hexString1)
+	src2 := utils.HexToBytes(hexString2)
+
 	if len(src1) != len(src2) {
 		log.Fatal("buffers are not equal length")
 	}
 
-	decodedHex1, err := hex.DecodeString(src1)
-	if err != nil {
-		log.Fatal(err)
+	out := make([]byte, len(src1))
+
+	for i, b := range src1 {
+		out[i] = b ^ src2[i]
 	}
 
-	decodedHex2, err := hex.DecodeString(src2)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	out := make([]byte, len(decodedHex1))
-
-	for i, b := range decodedHex1 {
-		out[i] = b ^ decodedHex2[i]
-	}
-
-	return hex.EncodeToString(out)
+	return utils.BytesToHex(out)
 }

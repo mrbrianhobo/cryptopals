@@ -1,31 +1,9 @@
 package set1
 
 import (
-	"io/ioutil"
 	"log"
 	"math"
-
-	"github.com/mrbrianhobo/cryptopals/utils"
 )
-
-func GetRawText(filename string) string {
-	rawBytes, err := ioutil.ReadFile(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return string(rawBytes)
-}
-
-func GetCiphertext(filename string) []byte {
-	base64Bytes, err := ioutil.ReadFile(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	base64String := string(base64Bytes)
-	return utils.Base64ToBytes(base64String)
-}
 
 func DecryptRepeatingKeyXORCipher(ciphertext []byte) string {
 	keysize := findKeysize(ciphertext)

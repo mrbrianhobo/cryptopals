@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/base64"
 	"encoding/hex"
+	"io/ioutil"
 	"log"
 )
 
@@ -30,4 +31,23 @@ func BytesToHex(src []byte) string {
 
 func BytesToBase64(src []byte) string {
 	return base64.StdEncoding.EncodeToString(src)
+}
+
+func GetRawText(filename string) string {
+	rawBytes, err := ioutil.ReadFile(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return string(rawBytes)
+}
+
+func GetBase64Ciphertext(filename string) []byte {
+	base64Bytes, err := ioutil.ReadFile(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	base64String := string(base64Bytes)
+	return Base64ToBytes(base64String)
 }

@@ -4,6 +4,8 @@ import (
 	"testing"
 
 	. "github.com/onsi/gomega"
+
+	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
 func TestHammingDistance(t *testing.T) {
@@ -26,10 +28,10 @@ func TestDecryptRepeatingKeyXORCipher(t *testing.T) {
 	var (
 		keysize  = 29
 		key      = "Terminator X: Bring the noise"
-		expected = GetRawText("../expected/6_out.txt")
+		expected = utils.GetRawText("../expected/6_out.txt")
 	)
 
-	ciphertext := GetCiphertext("../challenge-data/6.txt")
+	ciphertext := utils.GetBase64Ciphertext("../challenge-data/6.txt")
 	actualKey := DecryptRepeatingKeyXORCipher(ciphertext)
 	decrypted := DecryptRepeatingKeyXORCipherWithKey(ciphertext, actualKey)
 

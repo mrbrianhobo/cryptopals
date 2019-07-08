@@ -1,10 +1,9 @@
 package utils
 
 import (
-	"log"
-
 	"encoding/base64"
 	"encoding/hex"
+	"log"
 )
 
 func HexToBytes(hexString string) []byte {

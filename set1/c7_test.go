@@ -9,7 +9,7 @@ import (
 )
 
 func TestDecryptAESECB(t *testing.T) {
-	gomega := NewWithT(t)
+	RegisterTestingT(t)
 
 	var (
 		expected = utils.GetRawText("../expected/7_out.txt")
@@ -17,6 +17,6 @@ func TestDecryptAESECB(t *testing.T) {
 
 	ciphertext := utils.GetBase64Ciphertext("../challenge-data/7.txt")
 	decrypted := DecryptAESECB(ciphertext)
-	
-	gomega.Expect(decrypted).To(Equal(expected))
+
+	Expect(decrypted).To(Equal(expected))
 }

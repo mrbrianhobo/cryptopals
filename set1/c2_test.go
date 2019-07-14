@@ -7,7 +7,7 @@ import (
 )
 
 func TestFixedXOR(t *testing.T) {
-	gomega := NewWithT(t)
+	RegisterTestingT(t)
 
 	const (
 		hexString1 = "1c0111001f010100061a024b53535009181c"
@@ -17,5 +17,5 @@ func TestFixedXOR(t *testing.T) {
 
 	actual := FixedXOR(hexString1, hexString2)
 
-	gomega.Expect(actual).To(Equal(expected))
+	Expect(actual).To(Equal(expected))
 }

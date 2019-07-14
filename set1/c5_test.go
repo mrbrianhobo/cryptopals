@@ -7,7 +7,7 @@ import (
 )
 
 func TestRepeatingKeyXOR(t *testing.T) {
-	gomega := NewWithT(t)
+	RegisterTestingT(t)
 
 	const (
 		plaintext = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
@@ -17,5 +17,5 @@ func TestRepeatingKeyXOR(t *testing.T) {
 
 	ciphertext := RepeatingKeyXOR(plaintext, key)
 
-	gomega.Expect(ciphertext).To(Equal(expected))
+	Expect(ciphertext).To(Equal(expected))
 }

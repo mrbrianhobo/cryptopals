@@ -8,7 +8,7 @@ import (
 )
 
 func TestDetectSingleByteXOR(t *testing.T) {
-	gomega := NewWithT(t)
+	RegisterTestingT(t)
 
 	const (
 		hexString = "7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f"
@@ -21,7 +21,7 @@ func TestDetectSingleByteXOR(t *testing.T) {
 	actualKey := DecryptSingleByteXORCipher(ciphertext)
 	decrypted := DecryptXORCipherWithKey(ciphertext, actualKey)
 
-	gomega.Expect(actualHex).To(Equal(hexString))
-	gomega.Expect(actualKey).To(Equal(key))
-	gomega.Expect(decrypted).To(Equal(expected))
+	Expect(actualHex).To(Equal(hexString))
+	Expect(actualKey).To(Equal(key))
+	Expect(decrypted).To(Equal(expected))
 }

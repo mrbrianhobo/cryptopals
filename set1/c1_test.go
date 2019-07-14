@@ -7,7 +7,7 @@ import (
 )
 
 func TestCovertHexToBase64(t *testing.T) {
-	gomega := NewWithT(t)
+	RegisterTestingT(t)
 
 	const (
 		hexString = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
@@ -16,5 +16,5 @@ func TestCovertHexToBase64(t *testing.T) {
 
 	actual := ConvertHexToBase64(hexString)
 
-	gomega.Expect(actual).To(Equal(expected))
+	Expect(actual).To(Equal(expected))
 }

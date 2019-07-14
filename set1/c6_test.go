@@ -9,7 +9,7 @@ import (
 )
 
 func TestHammingDistance(t *testing.T) {
-	gomega := NewWithT(t)
+	RegisterTestingT(t)
 
 	const (
 		str1     = "this is a test"
@@ -19,11 +19,11 @@ func TestHammingDistance(t *testing.T) {
 
 	actual := HammingDistance(str1, str2)
 
-	gomega.Expect(actual).To(Equal(expected))
+	Expect(actual).To(Equal(expected))
 }
 
 func TestDecryptRepeatingKeyXORCipher(t *testing.T) {
-	gomega := NewWithT(t)
+	RegisterTestingT(t)
 
 	var (
 		keysize  = 29
@@ -35,7 +35,7 @@ func TestDecryptRepeatingKeyXORCipher(t *testing.T) {
 	actualKey := DecryptRepeatingKeyXORCipher(ciphertext)
 	decrypted := DecryptRepeatingKeyXORCipherWithKey(ciphertext, actualKey)
 
-	gomega.Expect(len(actualKey)).To(Equal(keysize))
-	gomega.Expect(actualKey).To(Equal(key))
-	gomega.Expect(decrypted).To(Equal(expected))
+	Expect(len(actualKey)).To(Equal(keysize))
+	Expect(actualKey).To(Equal(key))
+	Expect(decrypted).To(Equal(expected))
 }

@@ -3,11 +3,10 @@ package set1
 import (
 	"testing"
 
-	. "github.com/onsi/gomega"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestRepeatingKeyXOR(t *testing.T) {
-	RegisterTestingT(t)
 
 	const (
 		plaintext = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
@@ -17,5 +16,5 @@ func TestRepeatingKeyXOR(t *testing.T) {
 
 	ciphertext := RepeatingKeyXOR(plaintext, key)
 
-	Expect(ciphertext).To(Equal(expected))
+	assert.Equal(t, expected, ciphertext)
 }

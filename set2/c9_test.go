@@ -3,11 +3,10 @@ package set2
 import (
 	"testing"
 
-	. "github.com/onsi/gomega"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPKCS7Padding(t *testing.T) {
-	RegisterTestingT(t)
 
 	const (
 		plaintext = "YELLOW SUBMARINE"
@@ -16,5 +15,5 @@ func TestPKCS7Padding(t *testing.T) {
 
 	actual := PKCS7Padding(plaintext, 20)
 
-	Expect(actual).To(Equal(expected))
+	assert.Equal(t, expected, actual)
 }

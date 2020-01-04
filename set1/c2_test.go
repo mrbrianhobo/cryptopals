@@ -3,11 +3,10 @@ package set1
 import (
 	"testing"
 
-	. "github.com/onsi/gomega"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFixedXOR(t *testing.T) {
-	RegisterTestingT(t)
 
 	const (
 		hexString1 = "1c0111001f010100061a024b53535009181c"
@@ -17,5 +16,5 @@ func TestFixedXOR(t *testing.T) {
 
 	actual := FixedXOR(hexString1, hexString2)
 
-	Expect(actual).To(Equal(expected))
+	assert.Equal(t, expected, actual)
 }

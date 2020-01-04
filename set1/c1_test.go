@@ -3,11 +3,10 @@ package set1
 import (
 	"testing"
 
-	. "github.com/onsi/gomega"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCovertHexToBase64(t *testing.T) {
-	RegisterTestingT(t)
 
 	const (
 		hexString = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
@@ -16,5 +15,5 @@ func TestCovertHexToBase64(t *testing.T) {
 
 	actual := ConvertHexToBase64(hexString)
 
-	Expect(actual).To(Equal(expected))
+	assert.Equal(t, expected, actual)
 }

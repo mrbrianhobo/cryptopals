@@ -3,12 +3,12 @@ package set1
 import (
 	"testing"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/mrbrianhobo/cryptopals/utils"
-	. "github.com/onsi/gomega"
 )
 
 func TestDetectSingleByteXOR(t *testing.T) {
-	RegisterTestingT(t)
 
 	const (
 		hexString = "7b5a4215415d544115415d5015455447414c155c46155f4058455c5b523f"
@@ -16,12 +16,13 @@ func TestDetectSingleByteXOR(t *testing.T) {
 		expected  = "Now that the party is jumping\n"
 	)
 
-	actualHex := DetectSingleByteXOR("../challenge-data/4.txt")
-	ciphertext := utils.HexToBytes(actualHex)
+	rawtext := utils.GetRawText("../challenge-data/4.txt")
+	detected := DetectSingleByteXOR(rawtext)
+	ciphertext := utils.HexToBytes(detected)
 	actualKey := DecryptSingleByteXORCipher(ciphertext)
 	decrypted := DecryptXORCipherWithKey(ciphertext, actualKey)
 
-	Expect(actualHex).To(Equal(hexString))
-	Expect(actualKey).To(Equal(key))
-	Expect(decrypted).To(Equal(expected))
+	assert.Equal(t, hexString, detected)
+	assert.Equal(t, key, actualKey)
+	assert.Equal(t, expected, decrypted)
 }

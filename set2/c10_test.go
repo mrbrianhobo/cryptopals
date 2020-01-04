@@ -3,13 +3,12 @@ package set2
 import (
 	"testing"
 
-	. "github.com/onsi/gomega"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
 func TestDecryptAESCBC(t *testing.T) {
-	RegisterTestingT(t)
 
 	var (
 		key       = []byte("YELLOW SUBMARINE")
@@ -21,6 +20,6 @@ func TestDecryptAESCBC(t *testing.T) {
 	decrypted := DecryptAESCBC(ciphertext, key, iv)
 	encrypted := EncryptAESCBC(decrypted, key, iv)
 
-	Expect(string(decrypted)).To(Equal(plaintext))
-	Expect(encrypted).To(Equal(ciphertext))
+	assert.Equal(t, plaintext, string(decrypted))
+	assert.Equal(t, ciphertext, encrypted)
 }

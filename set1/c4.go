@@ -1,27 +1,17 @@
 package set1
 
 import (
-	"bufio"
-	"log"
 	"math"
-	"os"
+	"strings"
 
 	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
-func DetectSingleByteXOR(filename string) string {
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
+func DetectSingleByteXOR(rawtext string) string {
 	m := utils.NewMonogramStats()
 	max, hexString := -math.MaxFloat64, ""
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
+	for _, line := range strings.Split(rawtext, "\n") {
 		ciphertext := utils.HexToBytes(line)
 		key := DecryptSingleByteXORCipher(ciphertext)
 		decrypted := DecryptXORCipherWithKey(ciphertext, key)

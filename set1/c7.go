@@ -4,12 +4,8 @@ import (
 	"crypto/aes"
 )
 
-var (
-	key = []byte("YELLOW SUBMARINE")
-)
-
-func DecryptAESECB(ciphertext []byte) string {
-	block, _ := aes.NewCipher(key)
+func DecryptAESECB(ciphertext []byte, key string) string {
+	block, _ := aes.NewCipher([]byte(key))
 	decrypted := make([]byte, 0)
 
 	for len(ciphertext) > 0 {

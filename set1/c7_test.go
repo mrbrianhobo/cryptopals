@@ -3,20 +3,20 @@ package set1
 import (
 	"testing"
 
-	. "github.com/onsi/gomega"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
 func TestDecryptAESECB(t *testing.T) {
-	RegisterTestingT(t)
 
 	var (
 		expected = utils.GetRawText("../expected/7_out.txt")
+		key      = "YELLOW SUBMARINE"
 	)
 
 	ciphertext := utils.GetBase64Ciphertext("../challenge-data/7.txt")
-	decrypted := DecryptAESECB(ciphertext)
+	decrypted := DecryptAESECB(ciphertext, key)
 
-	Expect(decrypted).To(Equal(expected))
+	assert.Equal(t, expected, decrypted)
 }

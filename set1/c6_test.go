@@ -3,13 +3,12 @@ package set1
 import (
 	"testing"
 
-	. "github.com/onsi/gomega"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
 func TestHammingDistance(t *testing.T) {
-	RegisterTestingT(t)
 
 	const (
 		str1     = "this is a test"
@@ -19,11 +18,10 @@ func TestHammingDistance(t *testing.T) {
 
 	actual := HammingDistance(str1, str2)
 
-	Expect(actual).To(Equal(expected))
+	assert.Equal(t, expected, actual)
 }
 
 func TestDecryptRepeatingKeyXORCipher(t *testing.T) {
-	RegisterTestingT(t)
 
 	var (
 		keysize  = 29
@@ -35,7 +33,7 @@ func TestDecryptRepeatingKeyXORCipher(t *testing.T) {
 	actualKey := DecryptRepeatingKeyXORCipher(ciphertext)
 	decrypted := DecryptRepeatingKeyXORCipherWithKey(ciphertext, actualKey)
 
-	Expect(len(actualKey)).To(Equal(keysize))
-	Expect(actualKey).To(Equal(key))
-	Expect(decrypted).To(Equal(expected))
+	assert.Len(t, actualKey, keysize)
+	assert.Equal(t, key, actualKey)
+	assert.Equal(t, expected, decrypted)
 }

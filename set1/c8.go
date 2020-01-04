@@ -1,26 +1,16 @@
 package set1
 
 import (
-	"bufio"
 	"crypto/aes"
-	"log"
-	"os"
+	"strings"
 
 	"github.com/mrbrianhobo/cryptopals/utils"
 )
 
-func DetectAESECB(filename string) string {
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
+func DetectAESECB(rawtext string) string {
 	max, hexString := 0, ""
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
+	for _, line := range strings.Split(rawtext, "\n") {
 		ciphertext := utils.HexToBytes(line)
 		score := countRepeatingBlocks(ciphertext)
 		if score > max {

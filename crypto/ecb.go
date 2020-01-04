@@ -1,4 +1,4 @@
-package block
+package crypto
 
 import (
 	"crypto/aes"
@@ -6,7 +6,9 @@ import (
 )
 
 func ECBEncrypt(plaintext, key []byte) []byte {
-	validateInputs(plaintext, key)
+	plaintext = Pad(plaintext, aes.BlockSize)
+
+	validateInputsECB(plaintext, key)
 
 	block, _ := aes.NewCipher(key)
 	encrypted := make([]byte, 0)
@@ -22,7 +24,7 @@ func ECBEncrypt(plaintext, key []byte) []byte {
 }
 
 func ECBDecrypt(ciphertext, key []byte) []byte {
-	validateInputs(ciphertext, key)
+	validateInputsECB(ciphertext, key)
 
 	block, _ := aes.NewCipher(key)
 	decrypted := make([]byte, 0)
@@ -37,7 +39,7 @@ func ECBDecrypt(ciphertext, key []byte) []byte {
 	return decrypted
 }
 
-func validateInputs(text, key []byte) {
+func validateInputsECB(text, key []byte) {
 	if len(text) < aes.BlockSize {
 		log.Fatal("plaintext/ciphertext too short")
 	}

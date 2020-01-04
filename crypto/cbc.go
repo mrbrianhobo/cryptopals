@@ -1,4 +1,4 @@
-package block
+package crypto
 
 import (
 	"crypto/aes"
@@ -7,7 +7,9 @@ import (
 )
 
 func CBCEncrypt(plaintext, key, iv []byte) []byte {
-	validateInputs(plaintext, key, iv)
+	plaintext = Pad(plaintext, aes.BlockSize)
+
+	validateInputsCBC(plaintext, key, iv)
 
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -22,7 +24,7 @@ func CBCEncrypt(plaintext, key, iv []byte) []byte {
 }
 
 func CBCDecrypt(ciphertext, key, iv []byte) []byte {
-	validateInputs(ciphertext, key, iv)
+	validateInputsCBC(ciphertext, key, iv)
 
 	block, err := aes.NewCipher(key)
 	if err != nil {
@@ -36,9 +38,9 @@ func CBCDecrypt(ciphertext, key, iv []byte) []byte {
 	return decrypted
 }
 
-func validateInputs(text, key, iv []byte) {
+func validateInputsCBC(text, key, iv []byte) {
 	if len(iv) != aes.BlockSize {
-		log.Fatal("iv must be same lenght as the block size")
+		log.Fatal("iv must be same length as the block size")
 	}
 
 	if len(text) < aes.BlockSize {

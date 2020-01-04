@@ -16,7 +16,7 @@ func TestDecryptAESECB(t *testing.T) {
 	)
 
 	ciphertext := utils.GetBase64Ciphertext("../challenge-data/7.txt")
-	decrypted := DecryptAESECB(ciphertext, key)
+	decrypted := DecryptAESECB(ciphertext, []byte(key))
 
 	assert.Equal(t, expected, decrypted)
 }

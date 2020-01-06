@@ -15,5 +15,4 @@ func TestEncryptionOracle(t *testing.T) {
 	mode := DetectMode(encryption.ciphertext)
 
 	assert.Equal(t, encryption.mode, mode)
-
 }

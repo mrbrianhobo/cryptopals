@@ -1,5 +1,9 @@
 # cryptopals 🐹
 
+[![Build Status](https://travis-ci.com/mrbrianhobo/cryptopals.svg?branch=master)](https://travis-ci.com/mrbrianhobo/cryptopals)
+
+crypto challenges from [cryptopals.com](https://cryptopals.com/)
+
 ## Set 1: Basics
 
 1. Convert hex to base64
